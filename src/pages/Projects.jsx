@@ -24,7 +24,7 @@ const Projects = () => {
       id: 2,
       title: 'E-Commerce Platform',
       description: 'A fully functional e-commerce website with product catalog, cart functionality, and secure checkout. Includes user authentication, role-based access, and order management.',
-      image: '/images/ecommerce/ecommerce.png',
+      image: '/images/ecommerce/ecommerce.jpg',
       technologies: ['React', 'TailwindCSS', 'MySQL', 'Node.js'],
       category: 'web',
       links: {
@@ -41,7 +41,7 @@ const Projects = () => {
       technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
       category: 'web',
       links: {
-        github: 'https://github.com/GhOsCoDeR/mosaic-grove.git',
+        github: 'https://github.com/GideonWill/Mosaic-Grove.git',
         live: 'https://mosaic-grove.example.com'
       },
       featured: true

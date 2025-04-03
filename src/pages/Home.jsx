@@ -579,7 +579,7 @@ const Home = () => {
                   title="E-Commerce Platform" 
                   description="A fully functional e-commerce website with product catalog, cart functionality, and secure checkout."
                   tech="React, TailwindCSS, MySQL"
-                  image="/images/ecommerce/ecommerce.png"
+                  image="/images/ecommerce/ecommerce.jpg"
                 />
               </motion.div>
               
