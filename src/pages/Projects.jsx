@@ -28,7 +28,7 @@ const Projects = () => {
       technologies: ['React', 'TailwindCSS', 'MySQL', 'Node.js'],
       category: 'web',
       links: {
-        github: 'https://github.com/GhOsCoDeR/ecommerce-platform',
+        github: 'https://github.com/GhOsCoDeR/HopAndShop_main',
         live: 'https://ecommerce-demo.example.com'
       },
       featured: true
@@ -41,7 +41,7 @@ const Projects = () => {
       technologies: ['React', 'TailwindCSS', 'Framer Motion'],
       category: 'web',
       links: {
-        github: 'https://github.com/GhOsCoDeR/portfolio',
+        github: 'https://github.com/GhOsCoDeR/adams-portfolio',
         live: 'https://your-portfolio-url.com'
       },
       featured: false
@@ -54,7 +54,7 @@ const Projects = () => {
       technologies: ['React', 'WeatherAPI', 'CSS'],
       category: 'web',
       links: {
-        github: 'https://github.com/GhOsCoDeR/weather-dashboard',
+        github: 'https://github.com/GhOsCoDeR/weather',
         live: 'https://weather-app-demo.example.com'
       },
       featured: false
