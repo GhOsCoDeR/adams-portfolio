@@ -565,7 +565,7 @@ const Home = () => {
                   title="Campus Security Navigator" 
                   description="A mobile app that plots crime data on maps and alerts students when approaching high-risk areas."
                   tech="Flutter, Firebase, Google Maps"
-                  image="/images/campus-security/campusSecuritymap.jpeg"
+                  image="/images/campus-security/campusSecurityadmin.jpg"
                 />
               </motion.div>
               

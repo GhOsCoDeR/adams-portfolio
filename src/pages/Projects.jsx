@@ -11,7 +11,7 @@ const Projects = () => {
       id: 1,
       title: 'Campus Security Navigator',
       description: 'A mobile application that plots crime data on interactive maps and alerts university students when approaching high-risk areas. Utilizes geofencing to provide alternative safe routes.',
-      image: '/images/campus-security/campusSecuritymap.jpeg',
+      image: '/images/campus-security/campusSecurityadmin.jpg',
       technologies: ['Flutter', 'Firebase', 'Google Maps API', 'Cloud Functions'],
       category: 'mobile',
       links: {
