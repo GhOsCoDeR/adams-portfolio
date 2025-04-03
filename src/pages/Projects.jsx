@@ -34,6 +34,19 @@ const Projects = () => {
       featured: true
     },
     {
+      id: 3,
+      title: 'Mosaic Grove',
+      description: 'An agriculture website for exotic fruits and nuts including cashewnuts, dragon fruits, tigernuts, and wanbugu apples. Features product listings, growing guides, and online ordering.',
+      image: '/images/mosaic/agriculture.jpg',
+      technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
+      category: 'web',
+      links: {
+        github: 'https://github.com/GhOsCoDeR/mosaic-grove.git',
+        live: 'https://mosaic-grove.example.com'
+      },
+      featured: true
+    },
+    {
       id: 4,
       title: 'Personal Portfolio',
       description: 'A modern, responsive portfolio website built with React and TailwindCSS to showcase my projects and skills. Features smooth animations and transitions.',

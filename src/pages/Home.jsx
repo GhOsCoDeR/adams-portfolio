@@ -586,8 +586,23 @@ const Home = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                <ProjectCard 
+                  title="Mosaic Grove" 
+                  description="An agriculture website for exotic fruits and nuts including cashewnuts, dragon fruits, tigernuts, and wanbugu apples."
+                  tech="React, Node.js, Express, MongoDB"
+                  image="/images/mosaic/agriculture.jpg"
+                />
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 viewport={{ once: true }}
+                className="lg:col-span-3"
               >
                 <ProjectCard 
                   title="Weather Dashboard" 
