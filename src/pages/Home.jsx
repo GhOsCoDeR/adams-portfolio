@@ -565,14 +565,7 @@ const Home = () => {
                   title="Campus Security Navigator" 
                   description="A mobile app that plots crime data on maps and alerts students when approaching high-risk areas."
                   tech="Flutter, Firebase, Google Maps"
-                  image={[
-                    "/images/campus-security/campusSecuritymap.jpeg",
-                    "/images/campus-security/campusSecuritymap2.jpeg",
-                    "/images/campus-security/campusSecurityadmin.jpeg",
-                    "/images/campus-security/campusSecuritysdmin2.jpeg",
-                    "/images/campus-security/campusSecurityprofile.jpeg",
-                    "/images/campus-security/campusSecuritysettings.jpeg"
-                  ]}
+                  image="/images/campus-security/campusSecuritymap.jpeg"
                 />
               </motion.div>
               
@@ -586,12 +579,7 @@ const Home = () => {
                   title="E-Commerce Platform" 
                   description="A fully functional e-commerce website with product catalog, cart functionality, and secure checkout."
                   tech="React, TailwindCSS, MySQL"
-                  image={[
-                    "/images/ecommerce/ecommerce.png",
-                    "/images/ecommerce/cartpage.png", 
-                    "/images/ecommerce/checkout.png",
-                    "/images/ecommerce/ecommercehomepage.png"
-                  ]} 
+                  image="/images/ecommerce/ecommerce.png"
                 />
               </motion.div>
               
@@ -605,9 +593,7 @@ const Home = () => {
                   title="Weather Dashboard" 
                   description="A weather application that provides current weather data and forecasts for any location with search and geolocation."
                   tech="React, WeatherAPI, CSS"
-                  image={[
-                    "/images/weather/Screenshot 2025-04-03 115446.png"
-                  ]}
+                  image="/images/weather/Screenshot 2025-04-03 115446.png"
                 />
               </motion.div>
             </div>
@@ -735,74 +721,16 @@ const SkillCard = ({ icon, title, delay = 0 }) => {
 
 // Project Card Component
 const ProjectCard = ({ title, description, tech, image }) => {
-  // Check if image is an array (for carousel) or a single string
-  const hasMultipleImages = Array.isArray(image);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  
-  // Auto slide functionality - pause when hovered
-  React.useEffect(() => {
-    if (!hasMultipleImages || isHovered) return;
-    
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % image.length);
-    }, 3000); // Change slide every 3 seconds
-    
-    return () => clearInterval(interval);
-  }, [hasMultipleImages, image, isHovered]);
-
+  // Simplified version with single image only
   return (
-    <div 
-      className="card group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 h-full flex flex-col transform hover:-translate-y-2"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="bg-white rounded-xl shadow-md h-full flex flex-col overflow-hidden group border border-gray-100 hover:shadow-xl transition-shadow">
       <div className="relative h-56 overflow-hidden">
-        {hasMultipleImages ? (
-          <>
-            <motion.img 
-              key={currentImageIndex}
-              src={image[currentImageIndex]} 
-              alt={title}
-              className="w-full h-full object-cover group-hover:scale-105"
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.7, ease: "easeInOut" }}
-            />
-            <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1 z-10">
-              {image.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`h-2 w-8 rounded-full transition-all duration-300 ${
-                    index === currentImageIndex ? 'bg-primary w-8' : 'bg-white/50 w-3'
-                  }`}
-                  aria-label={`Go to image ${index + 1}`}
-                />
-              ))}
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            
-            <motion.div 
-              className="absolute top-2 left-2 bg-white/90 text-primary px-2 py-1 rounded text-xs font-medium z-10"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              {hasMultipleImages ? `${currentImageIndex + 1}/${image.length}` : '1/1'}
-            </motion.div>
-          </>
-        ) : (
-          <>
-            <img 
-              src={image} 
-              alt={title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </>
-        )}
+        <img 
+          src={typeof image === 'string' ? image : image[0]} 
+          alt={title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
         <div className="absolute top-3 right-3">
           <motion.span 

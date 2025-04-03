@@ -11,14 +11,7 @@ const Projects = () => {
       id: 1,
       title: 'Campus Security Navigator',
       description: 'A mobile application that plots crime data on interactive maps and alerts university students when approaching high-risk areas. Utilizes geofencing to provide alternative safe routes.',
-      image: [
-        '/images/campus-security/campusSecuritymap.jpeg',
-        '/images/campus-security/campusSecuritymap2.jpeg',
-        '/images/campus-security/campusSecurityadmin.jpeg',
-        '/images/campus-security/campusSecuritysdmin2.jpeg',
-        '/images/campus-security/campusSecurityprofile.jpeg',
-        '/images/campus-security/campusSecuritysettings.jpeg'
-      ],
+      image: '/images/campus-security/campusSecuritymap.jpeg',
       technologies: ['Flutter', 'Firebase', 'Google Maps API', 'Cloud Functions'],
       category: 'mobile',
       links: {
@@ -31,12 +24,7 @@ const Projects = () => {
       id: 2,
       title: 'E-Commerce Platform',
       description: 'A fully functional e-commerce website with product catalog, cart functionality, and secure checkout. Includes user authentication, role-based access, and order management.',
-      image: [
-        '/images/ecommerce/ecommerce.png',
-        '/images/ecommerce/cartpage.png',
-        '/images/ecommerce/checkout.png',
-        '/images/ecommerce/ecommercehomepage.png'
-      ],
+      image: '/images/ecommerce/ecommerce.png',
       technologies: ['React', 'TailwindCSS', 'MySQL', 'Node.js'],
       category: 'web',
       links: {
@@ -49,12 +37,7 @@ const Projects = () => {
       id: 4,
       title: 'Personal Portfolio',
       description: 'A modern, responsive portfolio website built with React and TailwindCSS to showcase my projects and skills. Features smooth animations and transitions.',
-      image: [
-        '/images/portfolio/Screenshot 2025-04-03 101506.png',
-        '/images/portfolio/Screenshot 2025-04-03 101519.png',
-        '/images/portfolio/Screenshot 2025-04-03 101532.png',
-        '/images/portfolio/Screenshot 2025-04-03 101547.png'
-      ],
+      image: '/images/portfolio/Screenshot 2025-04-03 101506.png',
       technologies: ['React', 'TailwindCSS', 'Framer Motion'],
       category: 'web',
       links: {
@@ -67,9 +50,7 @@ const Projects = () => {
       id: 5,
       title: 'Weather Dashboard',
       description: 'A weather application that provides current weather data and forecasts for any location. Features include search by city name, geolocation, and saved locations.',
-      image: [
-        '/images/weather/Screenshot 2025-04-03 115446.png'
-      ],
+      image: '/images/weather/Screenshot 2025-04-03 115446.png',
       technologies: ['React', 'WeatherAPI', 'CSS'],
       category: 'web',
       links: {
@@ -207,38 +188,11 @@ const ProjectCard = ({ project, index }) => {
     >
       {/* Project Image */}
       <div className="relative h-56 overflow-hidden">
-        {hasMultipleImages ? (
-          <>
-            <motion.img 
-              key={currentImageIndex}
-              src={project.image[currentImageIndex]} 
-              alt={project.title}
-              className="w-full h-full object-cover"
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.7, ease: "easeInOut" }}
-            />
-            <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1">
-              {project.image.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`h-2 w-8 rounded-full transition-all duration-300 ${
-                    index === currentImageIndex ? 'bg-primary w-8' : 'bg-white/50 w-3'
-                  }`}
-                  aria-label={`Go to image ${index + 1}`}
-                />
-              ))}
-            </div>
-          </>
-        ) : (
-          <img 
-            src={project.image} 
-            alt={project.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        )}
+        <img 
+          src={typeof project.image === 'string' ? project.image : project.image[0]} 
+          alt={project.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
         
         {/* Featured Badge */}
         {project.featured && (
