@@ -598,7 +598,7 @@ const Home = () => {
                   description="An agriculture website for exotic fruits and nuts including cashewnuts, dragon fruits, tigernuts, and wanbugu apples."
                   tech="React, Node.js, Express, MongoDB"
                   image="/images/mosaic/agriculture.jpg"
-                  liveUrl="https://mosaic-grove.example.com"
+                  liveUrl="https://mosaicgrov.netlify.app/"
                   githubUrl="https://github.com/GideonWill/Mosaic-Grove.git"
                 />
               </motion.div>
@@ -787,18 +787,30 @@ const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl }) =>
           </motion.a>
           
           {liveUrl && (
-            <div className="relative group/tooltip">
-              <motion.button
-                className="text-sm bg-primary text-white px-3 py-1 rounded-full flex items-center gap-1 hover:bg-primary-dark transition-colors cursor-pointer"
+            title === "Mosaic Grove" ? (
+              <motion.a
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm bg-primary text-white px-3 py-1 rounded-full flex items-center gap-1 hover:bg-primary-dark transition-colors"
                 whileHover={{ scale: 1.05 }}
-                onClick={() => alert(`This is a demo project. Live demo is not currently deployed.`)}
               >
-                <FaExternalLinkAlt size={10} /> Demo Preview
-              </motion.button>
-              <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity w-40 text-center">
-                Demo link not currently deployed
-              </span>
-            </div>
+                <FaExternalLinkAlt size={10} /> Live Demo
+              </motion.a>
+            ) : (
+              <div className="relative group/tooltip">
+                <motion.button
+                  className="text-sm bg-primary text-white px-3 py-1 rounded-full flex items-center gap-1 hover:bg-primary-dark transition-colors cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  onClick={() => alert(`This is a demo project. Live demo is not currently deployed.`)}
+                >
+                  <FaExternalLinkAlt size={10} /> Demo Preview
+                </motion.button>
+                <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity w-40 text-center">
+                  Demo link not currently deployed
+                </span>
+              </div>
+            )
           )}
         </div>
       </div>
