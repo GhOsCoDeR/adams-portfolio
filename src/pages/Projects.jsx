@@ -76,7 +76,7 @@ const Projects = () => {
       id: 6,
       title: 'Student Voting System',
       description: 'A secure online platform for university student elections with real-time results, candidate profiles, and voter authentication. Includes admin dashboard for managing elections.',
-      image: '/images/portfolio/voting-system.jpg',
+      image: '/images/voting/voting.jpg',
       technologies: ['React', 'Firebase', 'TailwindCSS', 'Authentication'],
       category: 'web',
       links: {
@@ -204,7 +204,7 @@ const ProjectCard = ({ project, index }) => {
           alt={project.title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-opacity duration-300"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/20 transition-opacity duration-300"></div>
       </div>
       
       {/* Content Container */}
@@ -213,7 +213,7 @@ const ProjectCard = ({ project, index }) => {
         {project.featured && (
           <div className="absolute top-4 right-4">
             <motion.span 
-              className="bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg backdrop-blur-sm"
+              className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg border border-white/10"
               whileHover={{ scale: 1.05 }}
             >
               Featured
@@ -224,7 +224,7 @@ const ProjectCard = ({ project, index }) => {
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
           <motion.span 
-            className="bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1"
+            className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 border border-white/10"
             whileHover={{ scale: 1.05 }}
           >
             {getCategoryIcon(project.category)}
@@ -232,68 +232,71 @@ const ProjectCard = ({ project, index }) => {
           </motion.span>
         </div>
         
-        {/* Project Title with Animated Underline */}
-        <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-primary transition-colors">
-          {project.title}
-          <motion.div 
-            className="block h-[2px] w-0 bg-primary group-hover:w-1/2 transition-all duration-300"
-          />
-        </h3>
-        
-        {/* Project Description */}
-        <p className="mb-4 text-gray-200 text-sm leading-relaxed line-clamp-3">
-          {project.description}
-        </p>
-        
-        {/* Technologies */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.map((tech, techIndex) => (
-            <span 
-              key={techIndex} 
-              className="bg-black/30 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-        
-        {/* Links */}
-        <div className="flex gap-3 mt-4">
-          {project.links.github && (
-            <a 
-              href={project.links.github} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-black/70 transition-colors"
-            >
-              <FaGithub className="text-sm" /> View Code
-            </a>
-          )}
+        {/* Glass Card for Content */}
+        <div className="bg-black/40 backdrop-blur-md rounded-xl p-5 border border-white/10">
+          {/* Project Title with Animated Underline */}
+          <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-primary transition-colors">
+            {project.title}
+            <motion.div 
+              className="block h-[2px] w-0 bg-primary group-hover:w-1/2 transition-all duration-300"
+            />
+          </h3>
           
-          {project.links.live && (
-            (project.title === "Mosaic Grove" || project.title === "Personal Portfolio" || project.title === "Weather Dashboard") ? (
+          {/* Project Description */}
+          <p className="mb-4 text-gray-100 text-sm leading-relaxed line-clamp-3">
+            {project.description}
+          </p>
+          
+          {/* Technologies */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.technologies.map((tech, techIndex) => (
+              <span 
+                key={techIndex} 
+                className="bg-white/10 backdrop-blur-md text-white text-xs font-medium px-2.5 py-1 rounded border border-white/5"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+          
+          {/* Links */}
+          <div className="flex gap-3 mt-4">
+            {project.links.github && (
               <a 
-                href={project.links.live} 
+                href={project.links.github} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-primary/80 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-primary transition-colors"
+                className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-black/70 transition-colors border border-white/10"
               >
-                <FaExternalLinkAlt className="text-sm" /> Live Demo
+                <FaGithub className="text-sm" /> View Code
               </a>
-            ) : (
-              <div className="relative group/tooltip">
-                <button 
-                  className="bg-primary/80 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-primary transition-colors cursor-pointer"
-                  onClick={() => alert(`This is a demo project. Live demo is not currently deployed.`)}
+            )}
+            
+            {project.links.live && (
+              (project.title === "Mosaic Grove" || project.title === "Personal Portfolio" || project.title === "Weather Dashboard") ? (
+                <a 
+                  href={project.links.live} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-primary transition-colors border border-white/10"
                 >
-                  <FaExternalLinkAlt className="text-sm" /> Preview
-                </button>
-                <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-sm text-white text-xs px-3 py-1 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity w-40 text-center">
-                  Demo link not currently deployed
-                </span>
-              </div>
-            )
-          )}
+                  <FaExternalLinkAlt className="text-sm" /> Live Demo
+                </a>
+              ) : (
+                <div className="relative group/tooltip">
+                  <button 
+                    className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-primary transition-colors cursor-pointer border border-white/10"
+                    onClick={() => alert(`This is a demo project. Live demo is not currently deployed.`)}
+                  >
+                    <FaExternalLinkAlt className="text-sm" /> Preview
+                  </button>
+                  <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity w-40 text-center border border-white/10">
+                    Demo link not currently deployed
+                  </span>
+                </div>
+              )
+            )}
+          </div>
         </div>
       </div>
       
