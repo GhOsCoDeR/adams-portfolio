@@ -781,10 +781,19 @@ const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl }) =>
     <div className="group relative h-96 overflow-hidden rounded-2xl shadow-lg transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
+        <motion.img 
           src={typeof image === 'string' ? image : image[0]} 
           alt={title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          animate={{ 
+            scale: [1, 1.03, 1],
+          }}
+          transition={{ 
+            duration: 12,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut"
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/20 transition-opacity duration-300"></div>
       </div>
@@ -796,13 +805,32 @@ const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl }) =>
           <motion.span 
             className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg border border-white/10"
             whileHover={{ scale: 1.05 }}
+            animate={{ 
+              y: [0, -3, 0],
+              opacity: [0.8, 1, 0.8]
+            }}
+            transition={{ 
+              duration: 4,
+              repeat: Infinity,
+              repeatType: "reverse" 
+            }}
           >
             {tech.split(',')[0]}
           </motion.span>
         </div>
         
         {/* Glass Card for Content - Only at the bottom portion */}
-        <div className="bg-black/40 backdrop-blur-sm rounded-xl p-5 border border-white/10 mt-auto">
+        <motion.div 
+          className="bg-black/40 backdrop-blur-sm rounded-xl p-5 border border-white/10 mt-auto"
+          animate={{ 
+            boxShadow: ['0 4px 6px rgba(0, 0, 0, 0.1)', '0 10px 15px rgba(0, 0, 0, 0.2)', '0 4px 6px rgba(0, 0, 0, 0.1)'],
+          }}
+          transition={{ 
+            duration: 8,
+            repeat: Infinity,
+            repeatType: "reverse" 
+          }}
+        >
           {/* Project Title with Animated Underline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -813,7 +841,15 @@ const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl }) =>
             <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-primary transition-colors">
               {title}
               <motion.div 
-                className="block h-[2px] w-0 bg-primary group-hover:w-1/2 transition-all duration-300"
+                className="block h-[2px] bg-primary/40"
+                animate={{ 
+                  width: ['0%', '30%', '0%'],
+                }}
+                transition={{ 
+                  duration: 8,
+                  repeat: Infinity,
+                  repeatType: "reverse" 
+                }}
               />
             </h3>
           </motion.div>
@@ -854,6 +890,14 @@ const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl }) =>
               rel="noopener noreferrer"
               className="text-sm text-white/80 font-medium flex items-center gap-1 hover:text-white transition-colors group/btn"
               whileHover={{ x: 2 }}
+              animate={{ 
+                x: [0, 2, 0],
+              }}
+              transition={{ 
+                duration: 5,
+                repeat: Infinity,
+                repeatType: "reverse" 
+              }}
             >
               <span className="bg-white/10 backdrop-blur-md p-2 rounded-full border border-white/5">
                 <FaGithub size={14} />
@@ -869,19 +913,57 @@ const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl }) =>
                   rel="noopener noreferrer"
                   className="text-sm bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-primary transition-colors border border-white/10"
                   whileHover={{ scale: 1.05 }}
+                  animate={{ 
+                    y: [0, -2, 0],
+                  }}
+                  transition={{ 
+                    duration: 6,
+                    repeat: Infinity,
+                    repeatType: "reverse" 
+                  }}
                 >
                   <span>Live Demo</span>
-                  <FaExternalLinkAlt size={10} className="group-hover:translate-x-1 transition-transform" />
+                  <motion.span
+                    animate={{ 
+                      x: [0, 3, 0],
+                    }}
+                    transition={{ 
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "reverse" 
+                    }}
+                  >
+                    <FaExternalLinkAlt size={10} className="transition-transform" />
+                  </motion.span>
                 </motion.a>
               ) : (
                 <div className="relative group/tooltip">
                   <motion.button
                     className="text-sm bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-primary transition-colors cursor-pointer border border-white/10"
                     whileHover={{ scale: 1.05 }}
+                    animate={{ 
+                      y: [0, -2, 0],
+                    }}
+                    transition={{ 
+                      duration: 6,
+                      repeat: Infinity,
+                      repeatType: "reverse" 
+                    }}
                     onClick={() => alert(`This is a demo project. Live demo is not currently deployed.`)}
                   >
                     <span>Preview</span>
-                    <FaExternalLinkAlt size={10} className="group-hover:translate-x-1 transition-transform" />
+                    <motion.span
+                      animate={{ 
+                        x: [0, 3, 0],
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: "reverse" 
+                      }}
+                    >
+                      <FaExternalLinkAlt size={10} className="transition-transform" />
+                    </motion.span>
                   </motion.button>
                   <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-sm text-white text-xs px-3 py-1 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity w-40 text-center">
                     Demo link not currently deployed
@@ -890,11 +972,21 @@ const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl }) =>
               )
             )}
           </motion.div>
-        </div>
+        </motion.div>
       </div>
       
       {/* Hover Effect Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-5 pointer-events-none"></div>
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-b from-primary/10 to-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-5 pointer-events-none"
+        animate={{ 
+          opacity: [0, 0.05, 0],
+        }}
+        transition={{ 
+          duration: 10,
+          repeat: Infinity,
+          repeatType: "reverse" 
+        }}
+      ></motion.div>
     </div>
   );
 };

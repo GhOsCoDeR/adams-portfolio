@@ -199,10 +199,19 @@ const ProjectCard = ({ project, index }) => {
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
+        <motion.img 
           src={typeof project.image === 'string' ? project.image : project.image[0]} 
           alt={project.title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          animate={{ 
+            scale: [1, 1.03, 1],
+          }}
+          transition={{ 
+            duration: 12,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut"
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/20 transition-opacity duration-300"></div>
       </div>
@@ -215,6 +224,15 @@ const ProjectCard = ({ project, index }) => {
             <motion.span 
               className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg border border-white/10"
               whileHover={{ scale: 1.05 }}
+              animate={{ 
+                y: [0, -3, 0],
+                opacity: [0.8, 1, 0.8]
+              }}
+              transition={{ 
+                duration: 4,
+                repeat: Infinity,
+                repeatType: "reverse" 
+              }}
             >
               Featured
             </motion.span>
@@ -226,6 +244,15 @@ const ProjectCard = ({ project, index }) => {
           <motion.span 
             className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 border border-white/10"
             whileHover={{ scale: 1.05 }}
+            animate={{ 
+              y: [0, -3, 0],
+              opacity: [0.8, 1, 0.8]
+            }}
+            transition={{ 
+              duration: 4,
+              repeat: Infinity,
+              repeatType: "reverse" 
+            }}
           >
             {getCategoryIcon(project.category)}
             <span>{project.category.charAt(0).toUpperCase() + project.category.slice(1)}</span>
@@ -233,12 +260,30 @@ const ProjectCard = ({ project, index }) => {
         </div>
         
         {/* Glass Card for Content - Only at the bottom portion */}
-        <div className="bg-black/40 backdrop-blur-sm rounded-xl p-5 border border-white/10 mt-auto">
+        <motion.div 
+          className="bg-black/40 backdrop-blur-sm rounded-xl p-5 border border-white/10 mt-auto"
+          animate={{ 
+            boxShadow: ['0 4px 6px rgba(0, 0, 0, 0.1)', '0 10px 15px rgba(0, 0, 0, 0.2)', '0 4px 6px rgba(0, 0, 0, 0.1)'],
+          }}
+          transition={{ 
+            duration: 8,
+            repeat: Infinity,
+            repeatType: "reverse" 
+          }}
+        >
           {/* Project Title with Animated Underline */}
           <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-primary transition-colors">
             {project.title}
             <motion.div 
-              className="block h-[2px] w-0 bg-primary group-hover:w-1/2 transition-all duration-300"
+              className="block h-[2px] bg-primary/40"
+              animate={{ 
+                width: ['0%', '30%', '0%'],
+              }}
+              transition={{ 
+                duration: 8,
+                repeat: Infinity,
+                repeatType: "reverse" 
+              }}
             />
           </h3>
           
@@ -250,46 +295,103 @@ const ProjectCard = ({ project, index }) => {
           {/* Technologies */}
           <div className="flex flex-wrap gap-2 mb-4">
             {project.technologies.map((tech, techIndex) => (
-              <span 
+              <motion.span 
                 key={techIndex} 
                 className="bg-white/10 backdrop-blur-md text-white text-xs font-medium px-2.5 py-1 rounded border border-white/5"
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                  opacity: [0.8, 1, 0.8]
+                }}
+                transition={{ 
+                  duration: 4 + (techIndex * 0.5),
+                  repeat: Infinity,
+                  repeatType: "reverse" 
+                }}
               >
                 {tech}
-              </span>
+              </motion.span>
             ))}
           </div>
           
           {/* Links */}
           <div className="flex gap-3 mt-4">
             {project.links.github && (
-              <a 
+              <motion.a 
                 href={project.links.github} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-black/70 transition-colors border border-white/10"
+                animate={{ 
+                  x: [0, 2, 0],
+                }}
+                transition={{ 
+                  duration: 5,
+                  repeat: Infinity,
+                  repeatType: "reverse" 
+                }}
               >
                 <FaGithub className="text-sm" /> View Code
-              </a>
+              </motion.a>
             )}
             
             {project.links.live && (
               (project.title === "Mosaic Grove" || project.title === "Personal Portfolio" || project.title === "Weather Dashboard") ? (
-                <a 
+                <motion.a 
                   href={project.links.live} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-primary transition-colors border border-white/10"
+                  animate={{ 
+                    y: [0, -2, 0],
+                  }}
+                  transition={{ 
+                    duration: 6,
+                    repeat: Infinity,
+                    repeatType: "reverse" 
+                  }}
                 >
-                  <FaExternalLinkAlt className="text-sm" /> Live Demo
-                </a>
+                  <span>Live Demo</span>
+                  <motion.span
+                    animate={{ 
+                      x: [0, 3, 0],
+                    }}
+                    transition={{ 
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "reverse" 
+                    }}
+                  >
+                    <FaExternalLinkAlt className="text-sm" />
+                  </motion.span>
+                </motion.a>
               ) : (
                 <div className="relative group/tooltip">
-                  <button 
+                  <motion.button 
                     className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-primary transition-colors cursor-pointer border border-white/10"
                     onClick={() => alert(`This is a demo project. Live demo is not currently deployed.`)}
+                    animate={{ 
+                      y: [0, -2, 0],
+                    }}
+                    transition={{ 
+                      duration: 6,
+                      repeat: Infinity,
+                      repeatType: "reverse" 
+                    }}
                   >
-                    <FaExternalLinkAlt className="text-sm" /> Preview
-                  </button>
+                    <span>Preview</span>
+                    <motion.span
+                      animate={{ 
+                        x: [0, 3, 0],
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: "reverse" 
+                      }}
+                    >
+                      <FaExternalLinkAlt className="text-sm" />
+                    </motion.span>
+                  </motion.button>
                   <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity w-40 text-center border border-white/10">
                     Demo link not currently deployed
                   </span>
@@ -297,11 +399,21 @@ const ProjectCard = ({ project, index }) => {
               )
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
       
       {/* Hover Effect Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-5 pointer-events-none"></div>
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-b from-primary/10 to-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-5 pointer-events-none"
+        animate={{ 
+          opacity: [0, 0.05, 0],
+        }}
+        transition={{ 
+          duration: 10,
+          repeat: Infinity,
+          repeatType: "reverse" 
+        }}
+      ></motion.div>
     </motion.div>
   );
 };
