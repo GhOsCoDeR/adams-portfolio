@@ -39,7 +39,7 @@ const About = () => {
                   {/* Profile image with gradient overlay */}
                   <div className="relative">
                     <img 
-                      src="/images/profile/adams.jpg" 
+                      src="/images/profile/adams.jpeg" 
                       alt="Adams Mahama" 
                       className="w-full h-auto rounded-lg z-10 relative"
                     />
