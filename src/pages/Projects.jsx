@@ -252,14 +252,17 @@ const ProjectCard = ({ project, index }) => {
           )}
           
           {project.links.live && (
-            <a 
-              href={project.links.live} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn btn-primary text-sm py-2"
-            >
-              <FaExternalLinkAlt className="mr-1" /> Live Demo
-            </a>
+            <div className="relative group/tooltip">
+              <button 
+                className="btn btn-primary text-sm py-2 cursor-pointer"
+                onClick={() => alert(`This is a demo project. Live demo is not currently deployed.`)}
+              >
+                <FaExternalLinkAlt className="mr-1" /> Demo Preview
+              </button>
+              <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity w-40 text-center">
+                Demo link not currently deployed
+              </span>
+            </div>
           )}
         </div>
       </div>
