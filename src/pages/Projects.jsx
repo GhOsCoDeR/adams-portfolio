@@ -281,7 +281,7 @@ const ProjectCard = ({ project, index }) => {
         
         {/* Glass Card for Content - Only at the bottom portion */}
         <motion.div 
-          className="bg-black/40 backdrop-blur-sm rounded-xl p-5 border border-white/10 mt-auto"
+          className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-white/10 mt-auto mx-auto max-w-[95%] mb-2"
           animate={{ 
             boxShadow: ['0 4px 6px rgba(0, 0, 0, 0.1)', '0 10px 15px rgba(0, 0, 0, 0.2)', '0 4px 6px rgba(0, 0, 0, 0.1)'],
           }}
