@@ -194,8 +194,28 @@ const ProjectCard = ({ project, index }) => {
     <motion.div 
       className="group relative h-96 overflow-hidden rounded-2xl shadow-lg transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      animate={{ 
+        opacity: 1, 
+        y: [0, -10, 0],
+        rotate: [0, 0.5, 0, -0.5, 0],
+      }}
+      transition={{ 
+        opacity: { duration: 0.5, delay: index * 0.1 },
+        y: {
+          duration: 6,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut",
+          delay: index * 0.2
+        },
+        rotate: {
+          duration: 12,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut",
+          delay: index * 0.3
+        }
+      }}
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">

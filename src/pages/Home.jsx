@@ -778,7 +778,27 @@ const SkillCard = ({ icon, title, delay = 0 }) => {
 // Project Card Component
 const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl }) => {
   return (
-    <div className="group relative h-96 overflow-hidden rounded-2xl shadow-lg transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+    <motion.div 
+      className="group relative h-96 overflow-hidden rounded-2xl shadow-lg transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
+      animate={{ 
+        y: [0, -10, 0],
+        rotate: [0, 0.5, 0, -0.5, 0],
+      }}
+      transition={{ 
+        y: {
+          duration: 6,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut"
+        },
+        rotate: {
+          duration: 12,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut"
+        }
+      }}
+    >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <motion.img 
@@ -987,7 +1007,7 @@ const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl }) =>
           repeatType: "reverse" 
         }}
       ></motion.div>
-    </div>
+    </motion.div>
   );
 };
 
