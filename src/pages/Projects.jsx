@@ -71,6 +71,19 @@ const Projects = () => {
         live: 'https://adamsweatherapp.netlify.app/'
       },
       featured: false
+    },
+    {
+      id: 6,
+      title: 'Student Voting System',
+      description: 'A secure online platform for university student elections with real-time results, candidate profiles, and voter authentication. Includes admin dashboard for managing elections.',
+      image: '/images/portfolio/voting-system.jpg',
+      technologies: ['React', 'Firebase', 'TailwindCSS', 'Authentication'],
+      category: 'web',
+      links: {
+        github: 'https://github.com/GhOsCoDeR/student-voting-system',
+        live: 'https://student-voting-demo.example.com'
+      },
+      featured: false
     }
   ];
   

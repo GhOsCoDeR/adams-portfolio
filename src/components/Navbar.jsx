@@ -30,7 +30,7 @@ const Navbar = () => {
       <div className="container-custom">
         <div className="flex justify-between items-center">
           <NavLink to="/" className="text-2xl font-bold text-primary">
-            Adams<span className="text-dark">.dev</span>
+            Adam<span className="text-dark">.dev</span>
           </NavLink>
 
           {/* Desktop Navigation */}

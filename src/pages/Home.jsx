@@ -624,7 +624,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="md:col-span-2"
+                className="md:col-span-1"
               >
                 <ProjectCard 
                   title="Weather Dashboard" 
@@ -633,6 +633,23 @@ const Home = () => {
                   image="/images/weather/Screenshot 2025-04-03 115446.png"
                   liveUrl="https://adamsweatherapp.netlify.app/"
                   githubUrl="https://github.com/GhOsCoDeR/weather.git"
+                />
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.45 }}
+                viewport={{ once: true }}
+                className="md:col-span-1"
+              >
+                <ProjectCard 
+                  title="Student Voting System" 
+                  description="A secure online platform for university student elections with real-time results, candidate profiles, and voter authentication."
+                  tech="React, Firebase, TailwindCSS"
+                  image="/images/portfolio/voting-system.jpg"
+                  liveUrl="https://student-voting-demo.example.com"
+                  githubUrl="https://github.com/GhOsCoDeR/student-voting-system"
                 />
               </motion.div>
             </div>
