@@ -9,6 +9,13 @@
   
   body {
     @apply bg-light text-dark font-sans;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    line-height: 1.5;
+    overflow-x: hidden;
+    animation: gradientShift 180s infinite alternate ease-in-out;
+    background-attachment: fixed;
+    transition: background-color 12s ease, background-image 12s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -41,6 +48,10 @@
     @apply border-2 border-primary text-primary hover:bg-primary hover:text-white;
   }
 
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+  }
+
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
@@ -57,7 +68,76 @@
     @apply text-primary;
   }
 
+  .nav-link::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  /* Navbar Dropdown Styles */
+  .nav-dropdown {
+    @apply absolute top-full bg-white rounded-xl shadow-xl overflow-hidden z-50 transition-all duration-300;
+    transform-origin: top center;
+  }
+
+  .nav-dropdown-content {
+    @apply p-6;
+  }
+
+  .nav-dropdown-item {
+    @apply flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors;
+  }
+
+  .nav-dropdown-title {
+    @apply text-lg font-bold text-gray-800 mb-1;
+  }
+
+  .nav-dropdown-description {
+    @apply text-sm text-gray-500 mb-4;
+  }
+
   .card {
     @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-radial {
+    background-image: radial-gradient(var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-color: #ffffff;
+    background-image: linear-gradient(120deg, #ffffff 0%, #e6f0ff 100%);
+  }
+  16.6% {
+    background-color: #e6f0ff;
+    background-image: linear-gradient(120deg, #e6f0ff 0%, #fff5f7 100%);
+  }
+  33.3% {
+    background-color: #fff5f7;
+    background-image: linear-gradient(120deg, #fff5f7 0%, #f0f9ff 100%);
+  }
+  50% {
+    background-color: #f0f9ff;
+    background-image: linear-gradient(120deg, #f0f9ff 0%, #f9f4ff 100%);
+  }
+  66.6% {
+    background-color: #f9f4ff;
+    background-image: linear-gradient(120deg, #f9f4ff 0%, #f7fcf0 100%);
+  }
+  83.3% {
+    background-color: #f7fcf0;
+    background-image: linear-gradient(120deg, #f7fcf0 0%, #f5fbff 100%);
+  }
+  100% {
+    background-color: #f5fbff;
+    background-image: linear-gradient(120deg, #f5fbff 0%, #ffffff 100%);
   }
 } 

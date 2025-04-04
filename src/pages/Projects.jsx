@@ -233,7 +233,8 @@ const ProjectCard = ({ project, index }) => {
             ease: "easeInOut"
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/20 transition-opacity duration-300"></div>
+        {/* Stronger gradient overlay for better readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/30 transition-opacity duration-300"></div>
       </div>
       
       {/* Content Container */}
@@ -242,7 +243,7 @@ const ProjectCard = ({ project, index }) => {
         {project.featured && (
           <div className="absolute top-4 right-4">
             <motion.span 
-              className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg border border-white/10"
+              className="bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg"
               whileHover={{ scale: 1.05 }}
               animate={{ 
                 y: [0, -3, 0],
@@ -262,7 +263,7 @@ const ProjectCard = ({ project, index }) => {
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
           <motion.span 
-            className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 border border-white/10"
+            className="bg-primary/80 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1"
             whileHover={{ scale: 1.05 }}
             animate={{ 
               y: [0, -3, 0],
@@ -279,23 +280,13 @@ const ProjectCard = ({ project, index }) => {
           </motion.span>
         </div>
         
-        {/* Glass Card for Content - Only at the bottom portion */}
-        <motion.div 
-          className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-white/10 mt-auto mx-auto max-w-[95%] mb-2"
-          animate={{ 
-            boxShadow: ['0 4px 6px rgba(0, 0, 0, 0.1)', '0 10px 15px rgba(0, 0, 0, 0.2)', '0 4px 6px rgba(0, 0, 0, 0.1)'],
-          }}
-          transition={{ 
-            duration: 8,
-            repeat: Infinity,
-            repeatType: "reverse" 
-          }}
-        >
+        {/* Content - No more glass effect, just a darker overlay for readability */}
+        <div className="mt-auto">
           {/* Project Title with Animated Underline */}
           <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-primary transition-colors">
             {project.title}
             <motion.div 
-              className="block h-[2px] bg-primary/40"
+              className="block h-[2px] bg-primary"
               animate={{ 
                 width: ['0%', '30%', '0%'],
               }}
@@ -308,7 +299,7 @@ const ProjectCard = ({ project, index }) => {
           </h3>
           
           {/* Project Description */}
-          <p className="mb-4 text-gray-100 text-sm leading-relaxed line-clamp-3">
+          <p className="mb-4 text-white text-sm leading-relaxed line-clamp-3">
             {project.description}
           </p>
           
@@ -317,7 +308,7 @@ const ProjectCard = ({ project, index }) => {
             {project.technologies.map((tech, techIndex) => (
               <motion.span 
                 key={techIndex} 
-                className="bg-white/10 backdrop-blur-md text-white text-xs font-medium px-2.5 py-1 rounded border border-white/5"
+                className="bg-black/50 text-white text-xs font-medium px-2.5 py-1 rounded"
                 animate={{ 
                   scale: [1, 1.05, 1],
                   opacity: [0.8, 1, 0.8]
@@ -340,7 +331,7 @@ const ProjectCard = ({ project, index }) => {
                 href={project.links.github} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-black/70 transition-colors border border-white/10"
+                className="bg-black/50 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-black/70 transition-colors"
                 animate={{ 
                   x: [0, 2, 0],
                 }}
@@ -360,7 +351,7 @@ const ProjectCard = ({ project, index }) => {
                   href={project.links.live} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-primary transition-colors border border-white/10"
+                  className="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-primary/80 transition-colors"
                   animate={{ 
                     y: [0, -2, 0],
                   }}
@@ -387,7 +378,7 @@ const ProjectCard = ({ project, index }) => {
               ) : (
                 <div className="relative group/tooltip">
                   <motion.button 
-                    className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-primary transition-colors cursor-pointer border border-white/10"
+                    className="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-primary/80 transition-colors cursor-pointer"
                     onClick={() => alert(`This is a demo project. Live demo is not currently deployed.`)}
                     animate={{ 
                       y: [0, -2, 0],
@@ -412,14 +403,14 @@ const ProjectCard = ({ project, index }) => {
                       <FaExternalLinkAlt className="text-sm" />
                     </motion.span>
                   </motion.button>
-                  <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity w-40 text-center border border-white/10">
+                  <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-3 py-1 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity w-40 text-center">
                     Demo link not currently deployed
                   </span>
                 </div>
               )
             )}
           </div>
-        </motion.div>
+        </div>
       </div>
       
       {/* Hover Effect Overlay */}
