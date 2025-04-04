@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaArrowRight, FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaMobileAlt, FaLaptopCode, FaUsers, FaCode, FaTrophy } from 'react-icons/fa';
+import { FaArrowRight, FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaMobileAlt, FaLaptopCode, FaUsers, FaCode, FaTrophy, FaExternalLinkAlt } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import React from 'react';
@@ -566,6 +566,8 @@ const Home = () => {
                   description="A mobile app that plots crime data on maps and alerts students when approaching high-risk areas."
                   tech="Flutter, Firebase, Google Maps"
                   image="/images/campus-security/campusSecurityadmin.jpg"
+                  liveUrl="https://campus-security-navigator.example.com"
+                  githubUrl="https://github.com/GhOsCoDeR/campus-security-navigator"
                 />
               </motion.div>
               
@@ -580,6 +582,8 @@ const Home = () => {
                   description="A fully functional e-commerce website with product catalog, cart functionality, and secure checkout."
                   tech="React, TailwindCSS, MySQL"
                   image="/images/ecommerce/ecommerce.jpg"
+                  liveUrl="https://ecommerce-demo.example.com"
+                  githubUrl="https://github.com/GhOsCoDeR/HopAndShop_main.git"
                 />
               </motion.div>
               
@@ -594,6 +598,8 @@ const Home = () => {
                   description="An agriculture website for exotic fruits and nuts including cashewnuts, dragon fruits, tigernuts, and wanbugu apples."
                   tech="React, Node.js, Express, MongoDB"
                   image="/images/mosaic/agriculture.jpg"
+                  liveUrl="https://mosaic-grove.example.com"
+                  githubUrl="https://github.com/GideonWill/Mosaic-Grove.git"
                 />
               </motion.div>
               
@@ -609,6 +615,8 @@ const Home = () => {
                   description="A weather application that provides current weather data and forecasts for any location with search and geolocation."
                   tech="React, WeatherAPI, CSS"
                   image="/images/weather/Screenshot 2025-04-03 115446.png"
+                  liveUrl="https://weather-app-demo.example.com"
+                  githubUrl="https://github.com/GhOsCoDeR/weather.git"
                 />
               </motion.div>
             </div>
@@ -735,7 +743,7 @@ const SkillCard = ({ icon, title, delay = 0 }) => {
 };
 
 // Project Card Component
-const ProjectCard = ({ title, description, tech, image }) => {
+const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl }) => {
   // Simplified version with single image only
   return (
     <div className="bg-white rounded-xl shadow-md h-full flex flex-col overflow-hidden group border border-gray-100 hover:shadow-xl transition-shadow">
@@ -767,13 +775,29 @@ const ProjectCard = ({ title, description, tech, image }) => {
           <div className="text-sm text-primary/80 font-medium">{tech}</div>
         </div>
         
-        <motion.div 
-          className="mt-4 text-sm text-primary font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
-          initial={{ x: -10 }}
-          whileInView={{ x: 0 }}
-        >
-          View Project <FaArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
-        </motion.div>
+        <div className="mt-4 flex justify-between items-center">
+          <motion.a 
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-primary font-medium flex items-center gap-1 hover:text-primary-dark transition-colors"
+            whileHover={{ x: 2 }}
+          >
+            <FaGithub size={14} /> View Code
+          </motion.a>
+          
+          {liveUrl && (
+            <motion.a 
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm bg-primary text-white px-3 py-1 rounded-full flex items-center gap-1 hover:bg-primary-dark transition-colors"
+              whileHover={{ scale: 1.05 }}
+            >
+              <FaExternalLinkAlt size={10} /> Live Demo
+            </motion.a>
+          )}
+        </div>
       </div>
     </div>
   );
