@@ -1,10 +1,8 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaGithub, FaLinkedin, FaTwitter, FaMapMarkerAlt, FaPaperPlane, FaWhatsapp, FaSpinner } from 'react-icons/fa';
-import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  const form = useRef();
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -26,29 +24,34 @@ const Contact = () => {
     setIsSubmitting(true);
     setFormStatus(null);
     
-    // EmailJS service configuration
-    // You'll need to sign up at https://www.emailjs.com/ and replace these with your actual IDs
-    const serviceId = 'service_0uuyx8h';  // Replace with your service ID from EmailJS dashboard
-    const templateId = 'template_hpji666'; // Replace with your template ID from EmailJS dashboard
-    const publicKey = 'K9vDhtyZSeVX0swGO'; // Replace with your public key from EmailJS dashboard
-
     try {
-      await emailjs.sendForm(
-        serviceId,
-        templateId,
-        form.current,
-        publicKey
-      );
+      // Get form data
+      const form = e.target;
+      const formData = new FormData(form);
       
-      setFormStatus('success');
-      setFormState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+      // Submit to Formspree
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          Accept: 'application/json'
+        }
       });
+      
+      if (response.ok) {
+        // Form submitted successfully
+        setFormStatus('success');
+        setFormState({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Form submission failed');
+      }
     } catch (error) {
-      console.error('Email sending failed:', error);
+      console.error('Error submitting form:', error);
       setFormStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -146,8 +149,8 @@ const Contact = () => {
                   <ContactInfoItem 
                     icon={<FaWhatsapp />}
                     title="WhatsApp"
-                    content="+233 24 696 0570" /* Replace with your actual number */
-                    link="https://wa.me/233246960570" /* Replace with your actual WhatsApp link */
+                    content="+233 24 696 0570"
+                    link="https://wa.me/233246960570"
                   />
                   
                   <ContactInfoItem 
@@ -203,7 +206,11 @@ const Contact = () => {
               <div className="bg-white rounded-xl shadow-md p-8 border border-gray-100">
                 <h2 className="text-2xl font-bold mb-6">Send Me a Message</h2>
                 
-                <form ref={form} onSubmit={handleSubmit}>
+                <form 
+                  onSubmit={handleSubmit} 
+                  action="https://formspree.io/f/xgvaeavq" 
+                  method="POST"
+                >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
                       <label htmlFor="name" className="block mb-2 font-medium">
@@ -269,6 +276,9 @@ const Contact = () => {
                       placeholder="Your message here..."
                     ></textarea>
                   </div>
+
+                  {/* Hidden field for Formspree to identify form submission */}
+                  <input type="hidden" name="_subject" value={`New contact from portfolio: ${formState.subject}`} />
                   
                   {formStatus === 'success' && (
                     <motion.div 

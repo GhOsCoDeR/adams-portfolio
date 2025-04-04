@@ -10,7 +10,7 @@ import Resume from './pages/Resume';
 
 function App() {
   useEffect(() => {
-    document.title = 'Adams Mahama | Portfolio';
+    document.title = 'Adam Mahama | Portfolio';
   }, []);
 
   return (

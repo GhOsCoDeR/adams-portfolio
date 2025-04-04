@@ -43,7 +43,7 @@ const Resume = () => {
               >
                 <div className="flex flex-col items-center justify-center mb-4">
                   <FaDownload className="text-4xl text-primary mb-3" />
-                  <h3 className="text-lg font-semibold">Adams Mahama - Resume</h3>
+                  <h3 className="text-lg font-semibold">Adam Mahama - Resume</h3>
                   <p className="text-sm text-gray-500 mt-1">Click to view the full resume</p>
                 </div>
                 <div className="bg-gray-100 p-4 rounded-lg text-left">
@@ -60,7 +60,7 @@ const Resume = () => {
             <div className="p-8 border-b border-gray-200">
               <div className="flex flex-col md:flex-row md:items-center justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold">Adams Mahama</h2>
+                  <h2 className="text-2xl font-bold">Adam Mahama</h2>
                   <p className="text-lg text-gray-600">Frontend & Mobile Developer</p>
                 </div>
                 <div className="mt-4 md:mt-0 space-y-1 text-gray-700">

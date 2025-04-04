@@ -95,7 +95,7 @@ const Home = () => {
                 transition={{ delay: 0.5, duration: 0.8 }}
               >
                 Hi, I'm <span className="text-primary relative inline-block">
-                  Adams Mahama
+                  Adam Mahama
                   <motion.span 
                     className="absolute bottom-2 left-0 w-full h-3 bg-primary/20 -z-10"
                     initial={{ width: 0 }}
@@ -228,7 +228,7 @@ const Home = () => {
                   {/* Profile image */}
                   <img 
                     src="/images/profile/profile.jpeg" 
-                    alt="Adams Mahama" 
+                    alt="Adam Mahama" 
                     className="w-full h-full object-cover"
                   />
                 </motion.div>
