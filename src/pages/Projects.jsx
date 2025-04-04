@@ -232,8 +232,8 @@ const ProjectCard = ({ project, index }) => {
           </motion.span>
         </div>
         
-        {/* Glass Card for Content */}
-        <div className="bg-black/40 backdrop-blur-md rounded-xl p-5 border border-white/10">
+        {/* Glass Card for Content - Only at the bottom portion */}
+        <div className="bg-black/40 backdrop-blur-sm rounded-xl p-5 border border-white/10 mt-auto">
           {/* Project Title with Animated Underline */}
           <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-primary transition-colors">
             {project.title}

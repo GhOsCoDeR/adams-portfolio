@@ -801,8 +801,8 @@ const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl }) =>
           </motion.span>
         </div>
         
-        {/* Glass Card for Content */}
-        <div className="bg-black/40 backdrop-blur-md rounded-xl p-5 border border-white/10">
+        {/* Glass Card for Content - Only at the bottom portion */}
+        <div className="bg-black/40 backdrop-blur-sm rounded-xl p-5 border border-white/10 mt-auto">
           {/* Project Title with Animated Underline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
