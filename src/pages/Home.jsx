@@ -631,7 +631,7 @@ const Home = () => {
                   description="A weather application that provides current weather data and forecasts for any location with search and geolocation."
                   tech="React, WeatherAPI, CSS"
                   image="/images/weather/Screenshot 2025-04-03 115446.png"
-                  liveUrl="https://weather-app-demo.example.com"
+                  liveUrl="https://adamsweatherapp.netlify.app/"
                   githubUrl="https://github.com/GhOsCoDeR/weather.git"
                 />
               </motion.div>
@@ -843,7 +843,7 @@ const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl }) =>
           </motion.a>
           
           {liveUrl && (
-            (title === "Mosaic Grove" || title === "Personal Portfolio") ? (
+            (title === "Mosaic Grove" || title === "Personal Portfolio" || title === "Weather Dashboard") ? (
               <motion.a
                 href={liveUrl}
                 target="_blank"

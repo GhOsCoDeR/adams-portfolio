@@ -68,7 +68,7 @@ const Projects = () => {
       category: 'web',
       links: {
         github: 'https://github.com/GhOsCoDeR/weather.git',
-        live: 'https://weather-app-demo.example.com'
+        live: 'https://adamsweatherapp.netlify.app/'
       },
       featured: false
     }
@@ -258,7 +258,7 @@ const ProjectCard = ({ project, index }) => {
           )}
           
           {project.links.live && (
-            (project.title === "Mosaic Grove" || project.title === "Personal Portfolio") ? (
+            (project.title === "Mosaic Grove" || project.title === "Personal Portfolio" || project.title === "Weather Dashboard") ? (
               <a 
                 href={project.links.live} 
                 target="_blank" 
