@@ -55,7 +55,7 @@ const Projects = () => {
       category: 'web',
       links: {
         github: 'https://github.com/GhOsCoDeR/adams-portfolio.git',
-        live: 'https://your-portfolio-url.com'
+        live: 'https://adamsmahamaportfolio.netlify.app/'
       },
       featured: false
     },
@@ -122,7 +122,7 @@ const Projects = () => {
           </div>
           
           {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {filteredProjects.map((project, index) => (
               <ProjectCard 
                 key={project.id} 
@@ -177,61 +177,67 @@ const ProjectCard = ({ project, index }) => {
     }
   };
 
-  // Carousel functionality
-  const hasMultipleImages = Array.isArray(project.image);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
-  // Auto slide functionality
-  React.useEffect(() => {
-    if (!hasMultipleImages) return;
-    
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % project.image.length);
-    }, 3000); // Change slide every 3 seconds
-    
-    return () => clearInterval(interval);
-  }, [hasMultipleImages, project.image]);
-
   return (
     <motion.div 
-      className="card relative group overflow-hidden"
+      className="group relative h-96 overflow-hidden rounded-2xl shadow-lg transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      {/* Project Image */}
-      <div className="relative h-56 overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
         <img 
           src={typeof project.image === 'string' ? project.image : project.image[0]} 
           alt={project.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-opacity duration-300"></div>
+      </div>
+      
+      {/* Content Container */}
+      <div className="absolute inset-0 z-10 flex flex-col justify-end p-6 text-white">
         {/* Featured Badge */}
         {project.featured && (
-          <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">
-            Featured
+          <div className="absolute top-4 right-4">
+            <motion.span 
+              className="bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg backdrop-blur-sm"
+              whileHover={{ scale: 1.05 }}
+            >
+              Featured
+            </motion.span>
           </div>
         )}
         
         {/* Category Badge */}
-        <div className="absolute top-4 left-4 bg-white text-dark px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-          {getCategoryIcon(project.category)}
-          {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
+        <div className="absolute top-4 left-4">
+          <motion.span 
+            className="bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1"
+            whileHover={{ scale: 1.05 }}
+          >
+            {getCategoryIcon(project.category)}
+            <span>{project.category.charAt(0).toUpperCase() + project.category.slice(1)}</span>
+          </motion.span>
         </div>
-      </div>
-      
-      {/* Project Info */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-        <p className="text-gray-600 mb-4">{project.description}</p>
+        
+        {/* Project Title with Animated Underline */}
+        <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-primary transition-colors">
+          {project.title}
+          <motion.div 
+            className="block h-[2px] w-0 bg-primary group-hover:w-1/2 transition-all duration-300"
+          />
+        </h3>
+        
+        {/* Project Description */}
+        <p className="mb-4 text-gray-200 text-sm leading-relaxed line-clamp-3">
+          {project.description}
+        </p>
         
         {/* Technologies */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.map((tech, index) => (
+          {project.technologies.map((tech, techIndex) => (
             <span 
-              key={index} 
-              className="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-1 rounded"
+              key={techIndex} 
+              className="bg-black/30 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded"
             >
               {tech}
             </span>
@@ -239,37 +245,37 @@ const ProjectCard = ({ project, index }) => {
         </div>
         
         {/* Links */}
-        <div className="flex gap-3">
+        <div className="flex gap-3 mt-4">
           {project.links.github && (
             <a 
               href={project.links.github} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="btn btn-outline text-sm py-2"
+              className="bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-black/70 transition-colors"
             >
-              <FaGithub className="mr-1" /> View Code
+              <FaGithub className="text-sm" /> View Code
             </a>
           )}
           
           {project.links.live && (
-            project.title === "Mosaic Grove" ? (
+            (project.title === "Mosaic Grove" || project.title === "Personal Portfolio") ? (
               <a 
                 href={project.links.live} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="btn btn-primary text-sm py-2"
+                className="bg-primary/80 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-primary transition-colors"
               >
-                <FaExternalLinkAlt className="mr-1" /> Live Demo
+                <FaExternalLinkAlt className="text-sm" /> Live Demo
               </a>
             ) : (
               <div className="relative group/tooltip">
                 <button 
-                  className="btn btn-primary text-sm py-2 cursor-pointer"
+                  className="bg-primary/80 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-primary transition-colors cursor-pointer"
                   onClick={() => alert(`This is a demo project. Live demo is not currently deployed.`)}
                 >
-                  <FaExternalLinkAlt className="mr-1" /> Demo Preview
+                  <FaExternalLinkAlt className="text-sm" /> Preview
                 </button>
-                <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity w-40 text-center">
+                <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-sm text-white text-xs px-3 py-1 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity w-40 text-center">
                   Demo link not currently deployed
                 </span>
               </div>
@@ -277,6 +283,9 @@ const ProjectCard = ({ project, index }) => {
           )}
         </div>
       </div>
+      
+      {/* Hover Effect Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-5 pointer-events-none"></div>
     </motion.div>
   );
 };

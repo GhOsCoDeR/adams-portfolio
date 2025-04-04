@@ -554,7 +554,7 @@ const Home = () => {
               </motion.div>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 gap-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -606,9 +606,25 @@ const Home = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.35 }}
+                viewport={{ once: true }}
+              >
+                <ProjectCard 
+                  title="Personal Portfolio" 
+                  description="A modern, responsive portfolio website built with React and TailwindCSS to showcase my projects and skills."
+                  tech="React, TailwindCSS, Framer Motion"
+                  image="/images/portfolio/Screenshot 2025-04-03 101506.png"
+                  liveUrl="https://adamsmahamaportfolio.netlify.app/"
+                  githubUrl="https://github.com/GhOsCoDeR/adams-portfolio.git"
+                />
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="lg:col-span-3"
+                className="md:col-span-2"
               >
                 <ProjectCard 
                   title="Weather Dashboard" 
@@ -744,76 +760,121 @@ const SkillCard = ({ icon, title, delay = 0 }) => {
 
 // Project Card Component
 const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl }) => {
-  // Simplified version with single image only
   return (
-    <div className="bg-white rounded-xl shadow-md h-full flex flex-col overflow-hidden group border border-gray-100 hover:shadow-xl transition-shadow">
-      <div className="relative h-56 overflow-hidden">
+    <div className="group relative h-96 overflow-hidden rounded-2xl shadow-lg transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
         <img 
           src={typeof image === 'string' ? image : image[0]} 
           alt={title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        
-        <div className="absolute top-3 right-3">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-opacity duration-300"></div>
+      </div>
+      
+      {/* Content Container */}
+      <div className="absolute inset-0 z-10 flex flex-col justify-end p-6 text-white">
+        {/* Tech Badge */}
+        <div className="absolute top-4 right-4">
           <motion.span 
-            className="bg-primary text-white px-3 py-1 rounded-full text-xs font-medium shadow-md opacity-90"
+            className="bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg backdrop-blur-sm"
             whileHover={{ scale: 1.05 }}
           >
             {tech.split(',')[0]}
           </motion.span>
         </div>
-      </div>
-      
-      <div className="p-6 flex-1 flex flex-col">
-        <div className="flex-1">
-          <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{title}</h3>
-          <p className="text-gray-600 mb-4 line-clamp-2">{description}</p>
-        </div>
         
-        <div className="pt-4 border-t border-gray-100">
-          <div className="text-sm text-primary/80 font-medium">{tech}</div>
-        </div>
+        {/* Project Title with Animated Underline */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-primary transition-colors">
+            {title}
+            <motion.div 
+              className="block h-[2px] w-0 bg-primary group-hover:w-1/2 transition-all duration-300"
+            />
+          </h3>
+        </motion.div>
         
-        <div className="mt-4 flex justify-between items-center">
+        {/* Project Description */}
+        <motion.p 
+          className="mb-4 text-gray-200 line-clamp-2 text-sm leading-relaxed"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true }}
+        >
+          {description}
+        </motion.p>
+        
+        {/* Technologies */}
+        <motion.div 
+          className="mb-4 opacity-70"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 0.7 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <div className="text-xs font-light">{tech}</div>
+        </motion.div>
+        
+        {/* Action Buttons */}
+        <motion.div 
+          className="flex justify-between items-center"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
           <motion.a 
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-primary font-medium flex items-center gap-1 hover:text-primary-dark transition-colors"
+            className="text-sm text-white/80 font-medium flex items-center gap-1 hover:text-white transition-colors group/btn"
             whileHover={{ x: 2 }}
           >
-            <FaGithub size={14} /> View Code
+            <span className="bg-black/30 backdrop-blur-sm p-2 rounded-full">
+              <FaGithub size={14} />
+            </span>
+            <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity">View Code</span>
           </motion.a>
           
           {liveUrl && (
-            title === "Mosaic Grove" ? (
+            (title === "Mosaic Grove" || title === "Personal Portfolio") ? (
               <motion.a
                 href={liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm bg-primary text-white px-3 py-1 rounded-full flex items-center gap-1 hover:bg-primary-dark transition-colors"
+                className="text-sm bg-primary/80 backdrop-blur-sm text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-primary transition-colors"
                 whileHover={{ scale: 1.05 }}
               >
-                <FaExternalLinkAlt size={10} /> Live Demo
+                <span>Live Demo</span>
+                <FaExternalLinkAlt size={10} className="group-hover:translate-x-1 transition-transform" />
               </motion.a>
             ) : (
               <div className="relative group/tooltip">
                 <motion.button
-                  className="text-sm bg-primary text-white px-3 py-1 rounded-full flex items-center gap-1 hover:bg-primary-dark transition-colors cursor-pointer"
+                  className="text-sm bg-primary/80 backdrop-blur-sm text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-primary transition-colors cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   onClick={() => alert(`This is a demo project. Live demo is not currently deployed.`)}
                 >
-                  <FaExternalLinkAlt size={10} /> Demo Preview
+                  <span>Preview</span>
+                  <FaExternalLinkAlt size={10} className="group-hover:translate-x-1 transition-transform" />
                 </motion.button>
-                <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity w-40 text-center">
+                <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-sm text-white text-xs px-3 py-1 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity w-40 text-center">
                   Demo link not currently deployed
                 </span>
               </div>
             )
           )}
-        </div>
+        </motion.div>
       </div>
+      
+      {/* Hover Effect Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-5 pointer-events-none"></div>
     </div>
   );
 };
