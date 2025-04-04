@@ -27,22 +27,36 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="sticky top-24">
-                <div className="bg-primary rounded-xl overflow-hidden mb-6">
-                  <img 
-                    src="https://via.placeholder.com/600x800" 
-                    alt="Adams Mahama" 
-                    className="w-full h-auto"
-                  />
-                </div>
+                <motion.div 
+                  className="rounded-xl overflow-hidden mb-6 border-4 border-white shadow-xl relative group"
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                >
+                  {/* Decorative elements */}
+                  <div className="absolute -top-2 -left-2 w-12 h-12 bg-primary/20 rounded-full blur-md"></div>
+                  <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-primary/30 rounded-full blur-md"></div>
+                  
+                  {/* Profile image with gradient overlay */}
+                  <div className="relative">
+                    <img 
+                      src="/images/profile/adams.jpg" 
+                      alt="Adams Mahama" 
+                      className="w-full h-auto rounded-lg z-10 relative"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                  </div>
+                </motion.div>
                 
                 <div className="flex justify-center">
-                  <a 
-                    href="/resume.pdf" 
+                  <motion.a 
+                    href="/documents/Adam_Mahama_Resume.pdf" 
                     download 
-                    className="btn btn-primary flex items-center gap-2"
+                    className="btn btn-primary flex items-center gap-2 px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <FaDownload /> Download Resume
-                  </a>
+                  </motion.a>
                 </div>
               </div>
             </motion.div>
@@ -55,21 +69,34 @@ const About = () => {
             >
               <h2 className="mb-6">Who I Am</h2>
               
-              <p className="mb-4 text-gray-700">
-                I am a motivated computer scientist with a passion for innovation and problem-solving. With expertise in frontend and mobile development, I focus on creating secure, responsive web applications and functional mobile solutions.
-              </p>
-              
-              <p className="mb-4 text-gray-700">
-                My journey in tech began during my studies at Kwame Nkrumah University of Science and Technology, where I developed a strong foundation in computer science principles. Since then, I've expanded my skills through self-directed learning and practical application in real-world projects.
-              </p>
-              
-              <p className="mb-8 text-gray-700">
-                I'm especially interested in applications that solve real-world problems, as demonstrated in my Campus Security Navigator project, which helps keep university students safe by alerting them to high-risk areas.
-              </p>
+              <div className="bg-white rounded-xl p-6 shadow-md mb-8 border border-gray-100">
+                <p className="mb-4 text-gray-700">
+                  I am a motivated computer scientist with a passion for innovation and problem-solving. With expertise in frontend and mobile development, I focus on creating secure, responsive web applications and functional mobile solutions.
+                </p>
+                
+                <p className="mb-4 text-gray-700">
+                  My journey in tech began during my studies at Kwame Nkrumah University of Science and Technology, where I developed a strong foundation in computer science principles. Since then, I've expanded my skills through self-directed learning and practical application in real-world projects.
+                </p>
+                
+                <p className="mb-4 text-gray-700">
+                  I'm especially interested in applications that solve real-world problems, as demonstrated in my Campus Security Navigator project, which helps keep university students safe by alerting them to high-risk areas.
+                </p>
+                
+                <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-100">
+                  <h4 className="text-primary font-medium mb-3">Personal Interests</h4>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700">
+                    <li>Network Administration & Security</li>
+                    <li>Mobile Application Development</li>
+                    <li>Web Design & User Experience</li>
+                    <li>Educational Technology Solutions</li>
+                    <li>Cloud Infrastructure & DevOps</li>
+                  </ul>
+                </div>
+              </div>
               
               <div className="mb-10">
-                <h3 className="mb-4 flex items-center gap-2">
-                  <FaLaptopCode className="text-primary" /> Technical Skills
+                <h3 className="mb-4 flex items-center gap-2 text-xl font-bold">
+                  <span className="text-primary text-2xl"><FaLaptopCode /></span> Technical Skills
                 </h3>
                 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -83,8 +110,8 @@ const About = () => {
               </div>
               
               <div className="mb-10">
-                <h3 className="mb-6 flex items-center gap-2">
-                  <FaGraduationCap className="text-primary" /> Education
+                <h3 className="mb-6 flex items-center gap-2 text-xl font-bold">
+                  <span className="text-primary text-2xl"><FaGraduationCap /></span> Education
                 </h3>
                 
                 <div className="space-y-4">
@@ -105,8 +132,8 @@ const About = () => {
               </div>
               
               <div>
-                <h3 className="mb-6 flex items-center gap-2">
-                  <FaBriefcase className="text-primary" /> Experience
+                <h3 className="mb-6 flex items-center gap-2 text-xl font-bold">
+                  <span className="text-primary text-2xl"><FaBriefcase /></span> Experience
                 </h3>
                 
                 <div className="space-y-4">
@@ -136,33 +163,63 @@ const About = () => {
 // Skill Progress Bar Component
 const SkillProgressBar = ({ skill, percentage }) => {
   return (
-    <div className="mb-4">
+    <motion.div 
+      className="mb-5 bg-white p-3 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow group"
+      whileHover={{ y: -2 }}
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="flex justify-between mb-1">
-        <span className="text-sm font-medium">{skill}</span>
-        <span className="text-sm font-medium">{percentage}%</span>
+        <span className="text-sm font-medium group-hover:text-primary transition-colors">{skill}</span>
+        <motion.span 
+          className="text-sm font-medium bg-primary/10 px-2 rounded"
+          initial={{ scale: 0.9 }}
+          whileInView={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 300, delay: 0.4 }}
+        >
+          {percentage}%
+        </motion.span>
       </div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5">
+      <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
         <motion.div 
-          className="bg-primary h-2.5 rounded-full"
+          className="bg-primary h-2.5 rounded-full relative"
           initial={{ width: 0 }}
           whileInView={{ width: `${percentage}%` }}
           transition={{ duration: 1, delay: 0.2 }}
           viewport={{ once: true }}
-        ></motion.div>
+        >
+          <motion.div 
+            className="absolute right-0 w-2 h-full bg-white/40"
+            animate={{ x: [5, -5] }}
+            transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
+          />
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 // Timeline Item Component
 const TimelineItem = ({ years, title, organization, description }) => {
   return (
-    <div className="border-l-2 border-primary pl-4 pb-2">
-      <div className="text-sm text-primary font-medium mb-1">{years}</div>
-      <h4 className="text-lg font-semibold mb-1">{title}</h4>
-      <div className="text-gray-800 mb-2">{organization}</div>
-      <p className="text-gray-600">{description}</p>
-    </div>
+    <motion.div 
+      className="border-l-2 border-primary pl-4 pb-6 relative group hover:bg-gray-50 rounded-r-lg transition-colors duration-300"
+      whileHover={{ x: 5 }}
+      initial={{ opacity: 0, x: -10 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
+      {/* Timeline dot */}
+      <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary group-hover:scale-125 transition-transform duration-300"></div>
+      
+      <div className="text-sm text-primary font-medium mb-1 bg-primary/10 inline-block px-2 py-1 rounded">{years}</div>
+      <h4 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">{title}</h4>
+      <div className="text-gray-800 mb-2 font-medium">{organization}</div>
+      <p className="text-gray-600 border-l-2 border-gray-200 pl-3">{description}</p>
+    </motion.div>
   );
 };
 
